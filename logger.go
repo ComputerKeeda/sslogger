@@ -3,6 +3,7 @@ package sslogger
 import (
 	"fmt"
 	"log"
+	"os"
 	"time"
 )
 
@@ -32,8 +33,28 @@ func (l Logger) Debug(message string) {
 }
 
 func LogMessage(level, message string) {
+	//currentTime := time.Now().Format("2006-01-02 15:04:05")
+	//formattedMessage := fmt.Sprintf("[%s] » %s", currentTime, message)
+	//switch level {
+	//case "info":
+	//	log.Printf(InfoColor, formattedMessage)
+	//case "warning":
+	//	log.Printf(WarningColor, formattedMessage)
+	//case "error":
+	//	log.Printf(ErrorColor, formattedMessage)
+	//case "debug":
+	//	log.Printf(DebugColor, formattedMessage)
+	//default:
+	//	log.Printf(formattedMessage)
+	//}
+
 	currentTime := time.Now().Format("2006-01-02 15:04:05")
 	formattedMessage := fmt.Sprintf("[%s] » %s", currentTime, message)
+
+	// Create a custom logger output
+	log.SetFlags(0) // Removes the default timestamp
+	log.SetOutput(os.Stdout)
+
 	switch level {
 	case "info":
 		log.Printf(InfoColor, formattedMessage)
