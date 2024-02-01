@@ -14,6 +14,7 @@ const (
 	WarningColor = "\033[1;33m%s\033[0m"
 	ErrorColor   = "\033[1;31m%s\033[0m"
 	DebugColor   = "\033[0;36m%s\033[0m"
+	GreenColor   = "\033[1;32m%s\033[0m"
 )
 
 func (l Logger) Info(message string) {
@@ -30,6 +31,10 @@ func (l Logger) Error(message string) {
 
 func (l Logger) Debug(message string) {
 	LogMessage("debug", message)
+}
+
+func (l Logger) Success(message string) {
+	LogMessage("success", message)
 }
 
 func LogMessage(level, message string) {
@@ -50,6 +55,8 @@ func LogMessage(level, message string) {
 		log.Printf(ErrorColor, formattedMessage)
 	case "debug":
 		log.Printf(DebugColor, formattedMessage)
+	case "success":
+		log.Printf(GreenColor, formattedMessage)
 	default:
 		log.Printf(formattedMessage)
 	}
