@@ -46,7 +46,6 @@ func LogMessage(level, message string) {
 	log.SetFlags(0) // Removes the default timestamp
 	log.SetOutput(os.Stdout)
 
-
 	switch level {
 	case "info":
 		log.Printf(InfoColor, formattedMessage)
@@ -61,4 +60,6 @@ func LogMessage(level, message string) {
 	default:
 		log.Printf(formattedMessage)
 	}
+
+	//	TODO : add few more options like giving users an option to set there own colors
 }
